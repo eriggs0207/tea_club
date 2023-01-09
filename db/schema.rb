@@ -22,15 +22,17 @@ ActiveRecord::Schema.define(version: 2023_01_09_204444) do
     t.string "address"
   end
 
-  create_table "subsriptions", force: :cascade do |t|
+  create_table "subscriptions", force: :cascade do |t|
     t.string "title"
     t.float "price"
     t.string "status"
     t.string "frequency"
     t.bigint "customer_id"
     t.bigint "tea_id"
-    t.index ["customer_id"], name: "index_subsriptions_on_customer_id"
-    t.index ["tea_id"], name: "index_subsriptions_on_tea_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_subscriptions_on_customer_id"
+    t.index ["tea_id"], name: "index_subscriptions_on_tea_id"
   end
 
   create_table "teas", force: :cascade do |t|
@@ -40,6 +42,6 @@ ActiveRecord::Schema.define(version: 2023_01_09_204444) do
     t.integer "brew_time"
   end
 
-  add_foreign_key "subsriptions", "customers"
-  add_foreign_key "subsriptions", "teas"
+  add_foreign_key "subscriptions", "customers"
+  add_foreign_key "subscriptions", "teas"
 end
