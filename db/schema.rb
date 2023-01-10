@@ -20,13 +20,15 @@ ActiveRecord::Schema.define(version: 2023_01_09_204444) do
     t.string "last_name"
     t.string "email"
     t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "subscriptions", force: :cascade do |t|
     t.string "title"
     t.float "price"
-    t.string "status"
-    t.string "frequency"
+    t.integer "status"
+    t.integer "frequency"
     t.bigint "customer_id"
     t.bigint "tea_id"
     t.datetime "created_at", null: false
@@ -40,6 +42,8 @@ ActiveRecord::Schema.define(version: 2023_01_09_204444) do
     t.string "description"
     t.integer "temperature"
     t.integer "brew_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "subscriptions", "customers"
