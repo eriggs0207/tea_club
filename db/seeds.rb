@@ -33,7 +33,7 @@ Subscription.create!(
   customer_id: customers[0].id,
   tea_id: teas[0].id,
   title: Faker::Hipster.word,
-  price: Faker::Number.between(from: 10.00, to: 250.00),
+  price: Faker::Number.between(from: 10.00, to: 250.00).round(2),
   status: rand(0..1),
   frequency: rand(0..2)
 )
@@ -42,7 +42,7 @@ Subscription.create!(
   customer_id: customers[0].id,
   tea_id: teas[1].id,
   title: Faker::Hipster.word,
-  price: Faker::Number.between(from: 10.00, to: 250.00),
+  price: Faker::Number.between(from: 10.00, to: 250.00).round(2),
   status: rand(0..1),
   frequency: rand(0..2)
 )
@@ -50,7 +50,7 @@ Subscription.create!(
   customer_id: customers[1].id,
   tea_id: teas[1].id,
   title: Faker::Hipster.word,
-  price: Faker::Number.between(from: 10.00, to: 250.00),
+  price: Faker::Number.between(from: 10.00, to: 250.00).round(2),
   status: rand(0..1),
   frequency: rand(0..2)
 )
@@ -58,7 +58,7 @@ Subscription.create!(
   customer_id: customers[1].id,
   tea_id: teas[2].id,
   title: Faker::Hipster.word,
-  price: Faker::Number.between(from: 10.00, to: 250.00),
+  price: Faker::Number.between(from: 10.00, to: 250.00).round(2),
   status: rand(0..1),
   frequency: rand(0..2)
 )
@@ -66,7 +66,7 @@ Subscription.create!(
   customer_id: customers[2].id,
   tea_id: teas[3].id,
   title: Faker::Hipster.word,
-  price: Faker::Number.between(from: 10.00, to: 250.00),
+  price: Faker::Number.between(from: 10.00, to: 250.00).round(2),
   status: rand(0..1),
   frequency: rand(0..2)
 )
@@ -74,7 +74,7 @@ Subscription.create!(
   customer_id: customers[2].id,
   tea_id: teas[4].id,
   title: Faker::Hipster.word,
-  price: Faker::Number.between(from: 10.00, to: 250.00),
+  price: Faker::Number.between(from: 10.00, to: 250.00).round(2),
   status: rand(0..1),
   frequency: rand(0..2)
 )
@@ -82,7 +82,7 @@ Subscription.create!(
   customer_id: customers[3].id,
   tea_id: teas[5].id,
   title: Faker::Hipster.word,
-  price: Faker::Number.between(from: 10.00, to: 250.00),
+  price: Faker::Number.between(from: 10.00, to: 250.00).round(2),
   status: rand(0..1),
   frequency: rand(0..2)
 )
@@ -90,7 +90,7 @@ Subscription.create!(
   customer_id: customers[3].id,
   tea_id: teas[6].id,
   title: Faker::Hipster.word,
-  price: Faker::Number.between(from: 10.00, to: 250.00),
+  price: Faker::Number.between(from: 10.00, to: 250.00).round(2),
   status: rand(0..1),
   frequency: rand(0..2)
 )
@@ -98,7 +98,7 @@ Subscription.create!(
   customer_id: customers[4].id,
   tea_id: teas[7].id,
   title: Faker::Hipster.word,
-  price: Faker::Number.between(from: 10.00, to: 250.00),
+  price: Faker::Number.between(from: 10.00, to: 250.00).round(2),
   status: rand(0..1),
   frequency: rand(0..2)
 )
@@ -106,7 +106,7 @@ Subscription.create!(
   customer_id: customers[4].id,
   tea_id: teas[8].id,
   title: Faker::Hipster.word,
-  price: Faker::Number.between(from: 10.00, to: 250.00),
+  price: Faker::Number.between(from: 10.00, to: 250.00).round(2),
   status: rand(0..1),
   frequency: rand(0..2)
 )
@@ -114,7 +114,7 @@ Subscription.create!(
   customer_id: customers[5].id,
   tea_id: teas[9].id,
   title: Faker::Hipster.word,
-  price: Faker::Number.between(from: 10.00, to: 250.00),
+  price: Faker::Number.between(from: 10.00, to: 250.00).round(2),
   status: rand(0..1),
   frequency: rand(0..2)
 )
@@ -122,7 +122,7 @@ Subscription.create!(
   customer_id: customers[5].id,
   tea_id: teas[0].id,
   title: Faker::Hipster.word,
-  price: Faker::Number.between(from: 10.00, to: 250.00),
+  price: Faker::Number.between(from: 10.00, to: 250.00).round(2),
   status: rand(0..1),
   frequency: rand(0..2)
 )
