@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateTea < ActiveRecord::Migration[5.2]
   def change
     create_table :teas do |t|
@@ -5,6 +7,7 @@ class CreateTea < ActiveRecord::Migration[5.2]
       t.string :description
       t.integer :temperature
       t.integer :brew_time
+      t.timestamps
     end
   end
 end
