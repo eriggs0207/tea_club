@@ -1,12 +1,12 @@
 class Api::V1::SubscriptionsController < ApplicationController
 
   def create
-    customer = Customer.find_by(id: params[:customer_id])
-    if customer.nil?
-      render json: {errors: { message: "customer does not exist"}}, status: 401
-    else
-      SubscriptionSerializer.new(customer.subscriptions.create(subscription_params))
+    subscription = Subscription.new(subscription_params)
+    if subscription.save
+      SubscriptionSerializer.new(subscription)
       render json: {success: { message: "Subscription has been created"}}, status: 201
+    else
+      render json: { errors: subscription.errors.full_messages }, status: 400
     end
   end
 
@@ -21,5 +21,9 @@ class Api::V1::SubscriptionsController < ApplicationController
       :customer_id,
       :tea_id
     )
+  end
+
+  def subscription_update_params
+    params.permit(:status)
   end
 end

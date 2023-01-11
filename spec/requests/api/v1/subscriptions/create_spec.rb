@@ -18,7 +18,7 @@ RSpec.describe 'Subscriptions API | Create' do
 
         headers = {"CONTENT_TYPE" => "application/json"}
 
-        post '/api/v1/subscriptions', headers: headers, params: JSON.generate(subscription_params)
+        post '/api/v1/subscriptions', headers: headers, params: JSON.generate(subscription: subscription_params)
         parsed_response = JSON.parse(response.body, symbolize_names: true)
         expect(response).to be_successful
         expect(response).to have_http_status(201)
@@ -45,12 +45,34 @@ RSpec.describe 'Subscriptions API | Create' do
 
         headers = {"CONTENT_TYPE" => "application/json"}
 
-        post '/api/v1/subscriptions', headers: headers, params: JSON.generate(subscription_params)
+        post '/api/v1/subscriptions', headers: headers, params: JSON.generate(subscription: subscription_params)
         parsed_response = JSON.parse(response.body, symbolize_names: true)
-        expect(response).to have_http_status(401)
+        expect(response).to have_http_status(400)
 
         expect(parsed_response).to be_a(Hash)
-        expect(parsed_response[:errors][:message]).to eq("customer does not exist")
+        expect(parsed_response[:errors][0]).to eq("Customer must exist")
+
+      end
+      it 'throws a 401 error if no tea exists' do
+
+        customer = create(:customer)
+        subscription_params = {
+          customer_id: customer.id,
+          tea_id: '',
+          title: "tea club",
+          price: 200.00,
+          status: 0,
+          frequency: 1
+        }
+
+        headers = {"CONTENT_TYPE" => "application/json"}
+
+        post '/api/v1/subscriptions', headers: headers, params: JSON.generate(subscription: subscription_params)
+        parsed_response = JSON.parse(response.body, symbolize_names: true)
+        expect(response).to have_http_status(400)
+
+        expect(parsed_response).to be_a(Hash)
+        expect(parsed_response[:errors][0]).to eq("Tea must exist")
 
       end
     end
