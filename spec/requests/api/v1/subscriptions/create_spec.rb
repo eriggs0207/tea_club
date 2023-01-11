@@ -29,5 +29,30 @@ RSpec.describe 'Subscriptions API | Create' do
         expect(customer.subscriptions.count).to eq(1)
       end
     end
+
+    context 'sad path' do
+      it 'throws a 401 error if no customer exists' do
+
+        tea = create(:tea)
+        subscription_params = {
+          customer_id: '',
+          tea_id: tea.id,
+          title: "tea club",
+          price: 200.00,
+          status: 0,
+          frequency: 1
+        }
+
+        headers = {"CONTENT_TYPE" => "application/json"}
+
+        post '/api/v1/subscriptions', headers: headers, params: JSON.generate(subscription_params)
+        parsed_response = JSON.parse(response.body, symbolize_names: true)
+        expect(response).to have_http_status(401)
+
+        expect(parsed_response).to be_a(Hash)
+        expect(parsed_response[:errors][:message]).to eq("customer does not exist")
+
+      end
+    end
   end
 end
