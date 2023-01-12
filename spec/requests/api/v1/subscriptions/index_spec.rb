@@ -37,5 +37,21 @@ RSpec.describe 'Subscriptions API | Index' do
         expect(parsed_response[:data][1][:attributes][:customer_id]).to_not eq(customers[1].id)
       end
     end
+
+    context 'sad path' do
+      it 'throws a 401 error if customer does not exist' do
+        customer_params = { customer_id: "" }
+        headers = {"CONTENT_TYPE" => "application/json"}
+
+        get "/api/v1/subscriptions", headers: headers, params: customer_params
+        parsed_response = JSON.parse(response.body, symbolize_names: true)
+
+        expect(response).to_not be_successful
+        expect(response).to have_http_status(401)
+
+        expect(parsed_response).to be_an(Hash)
+        expect(parsed_response[:errors][:message]).to eq("Customer does not exist")
+      end
+    end
   end
 end
