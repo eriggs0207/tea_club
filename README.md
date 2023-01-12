@@ -1,17 +1,21 @@
 # README
 
-# Back End Repository for Tea Club
+# Tea Club API
 
 ## Table of Contents
 
 1. [About Tea Club](#about-tea-club)
-2. [Local Setup](#local-setup)
-3. [Versions](#versions)
-4. [Available RESTful API End Points](#all-available-end-points)
-- [Favorites End Points](#favorites-end-points)
+2. [Built With](#built-with)
+- [Gems](#gems)
+- [Versions](#versions)
+3. [Local Setup](#local-setup)
+4. [Database Schema](#database-schema)
+5. [Available RESTful API End Points](#all-available-end-points)
+- [Subscriptions End Points](#subscriptions-end-points)
     - [Create](#favorites-create)
+    - [Update](#favorites-update)
     - [Index](#favorites-index)
-5. [Contributors](#contributors)
+6. [Contributors](#contributors)
 
 ## About Tea Club
 
@@ -21,180 +25,63 @@
 - Determine completion criteria based on the needs of other developers
 - Test both API consumption and exposure, making use of at least one mocking tool (VCR, Webmock, etc).
 
+## Built With
+
+![Ruby](https://img.shields.io/badge/Ruby-CC342D?style=for-the-badge&logo=ruby&logoColor=white)
+![Ruby on Rails](https://img.shields.io/badge/Ruby_on_Rails-CC0000?style=for-the-badge&logo=ruby-on-rails&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![Git](https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white)
+![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=Postman&logoColor=white)
+
+### Gems
+
+![rspec](https://img.shields.io/gem/v/rspec-rails?label=rspec&style=flat-square)
+![jsonapi-serializer](https://img.shields.io/badge/jsonapi--serializer-v%202.2.0-green)
+![shoulda](https://img.shields.io/gem/v/shoulda-matchers?label=shoulda-matchers&style=flat-square)
+![simplecov](https://img.shields.io/gem/v/simplecov?label=simplecov&style=flat-square)
+![factory bot](https://img.shields.io/gem/v/factory_bot_rails?color=blue&label=factory_bot_rails)
+![faker](https://img.shields.io/gem/v/faker?color=blue&label=faker)
+![rubocop](https://img.shields.io/gem/v/rubocop?color=blue&label=rubocop)
+![pry](https://img.shields.io/gem/v/pry?color=blue&label=pry)
+
+### Versions
+
+This project uses `Ruby 2.7.2`
+
+- with Rails `5.2.8.1`
+- and uses `PostgreSQL`
+
+## Local Setup
+
+* Fork this repository
+* Clone your fork
+* From the command line, install gems and set up your DB:
+    * `bundle install`
+    * `rails db:{create,migrate,seed}`
+* Run the test suite with `bundle exec rspec`.
+* Run your development server with `rails s` to see the app in action.
+
+
+## Database Schema
+
+<div align="center">
+  ![image](app/assets/Tea_club_schema.png)
+</div>
+
 ## All Available End Points:
 
-### Recipe End Point
-Returns the recipes for a given country
+### Subscription End Points
 
-<b>Notes:</b>
-To return a random country a value must be set to 'random_country' in the button
-
-`GET  /api/v1/recipes + params`
-
-or
-
-`GET http://localhost:3000/api/v1/recipes?country?{country}`
-
-<b>Example Input:</b>
-
-`GET http://localhost:3000/api/v1/recipes?country=Malaysia`
-
-<b>Example Output:</b>
-
-```json
-{
-    "data": [
-        {
-            "id": null,
-            "type": "recipe",
-            "attributes": {
-                "title": "Coconut Curry Puffs",
-                "url": "http://www.food52.com/recipes/10992_coconut_curry_puffs",
-                "country": "malaysia",
-                "image": "https://edamam-product-images.s3.amazonaws.com/"
-              }
-          },
-
-        {
-            "id": null,
-            "type": "recipe",
-            "attributes": {
-                "title": "Coconut-Pandan Jam (Kaya Jam)",
-                "url": "https://www.epicurious.com/recipes/food/views/coconut-pandan-jam-kaya-jam",
-                "country": "malaysia",
-                "image": "https://edamam-product-images.s3.amazonaws.com/web-img"
-            }
-          }
-      ]
-  }
+#### Subscription Create
 
 
-```
+Creates Subscriptions
 
-##
-
-### Learning Resources End Point
-Returns videos and images from a given country`
-
-`GET  /api/v1/learning_resources + params`
+`POST  /api/v1/subscriptions`
 
 or
 
-`GET http://localhost:3000/api/v1/learning_resources?country?{country}`
-
-<b>Example Input:</b>
-
-`GET http://localhost:3000/api/v1/learning_resources?country=japan`
-
-<b>Example Output:</b>
-
-```json
-{
-    "data": {
-        "id": null,
-        "type": "learning_resource",
-        "attributes": {
-            "country": "japan",
-            "video": {
-                "title": "A Super Quick History of Japan",
-                "youtube_video_id": "74g8q804ukA"
-            },
-            "images": [
-                {
-                    "alt_tag": "three bicycles parked in front of building",
-                    "url": "https://images.unsplash.com/photo-1480796927426-f609979314bd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzODAwMzZ8MHwxfHNlYXJjaHwxfHxqYXBhbnxlbnwwfHx8fDE2Njg1NDc3Nzg&ixlib=rb-4.0.3&q=80&w=1080"
-                },
-                {
-                    "alt_tag": "Mt. Fuji",
-                    "url": "https://images.unsplash.com/photo-1528164344705-47542687000d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzODAwMzZ8MHwxfHNlYXJjaHwyfHxqYXBhbnxlbnwwfHx8fDE2Njg1NDc3Nzg&ixlib=rb-4.0.3&q=80&w=1080"
-                },
-                {
-                    "alt_tag": "Torii Gate, Japan",
-                    "url": "https://images.unsplash.com/photo-1492571350019-22de08371fd3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzODAwMzZ8MHwxfHNlYXJjaHwzfHxqYXBhbnxlbnwwfHx8fDE2Njg1NDc3Nzg&ixlib=rb-4.0.3&q=80&w=1080"
-                },
-                {
-                    "alt_tag": "pagoda surrounded by trees",
-                    "url": "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzODAwMzZ8MHwxfHNlYXJjaHw0fHxqYXBhbnxlbnwwfHx8fDE2Njg1NDc3Nzg&ixlib=rb-4.0.3&q=80&w=1080"
-                },
-                {
-                    "alt_tag": "Mount Fuji, Japan",
-                    "url": "https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzODAwMzZ8MHwxfHNlYXJjaHw1fHxqYXBhbnxlbnwwfHx8fDE2Njg1NDc3Nzg&ixlib=rb-4.0.3&q=80&w=1080"
-                },
-                {
-                    "alt_tag": "people gathered outside buildings and vehicles",
-                    "url": "https://images.unsplash.com/photo-1542051841857-5f90071e7989?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzODAwMzZ8MHwxfHNlYXJjaHw2fHxqYXBhbnxlbnwwfHx8fDE2Njg1NDc3Nzg&ixlib=rb-4.0.3&q=80&w=1080"
-                },
-                {
-                    "alt_tag": "Japanese lantern over city bike at nighttime",
-                    "url": "https://images.unsplash.com/photo-1528360983277-13d401cdc186?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzODAwMzZ8MHwxfHNlYXJjaHw3fHxqYXBhbnxlbnwwfHx8fDE2Njg1NDc3Nzg&ixlib=rb-4.0.3&q=80&w=1080"
-                },
-                {
-                    "alt_tag": "Mt. Fuji, Japan",
-                    "url": "https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzODAwMzZ8MHwxfHNlYXJjaHw4fHxqYXBhbnxlbnwwfHx8fDE2Njg1NDc3Nzg&ixlib=rb-4.0.3&q=80&w=1080"
-                },
-                {
-                    "alt_tag": "men in black suits standing in the hallway",
-                    "url": "https://images.unsplash.com/photo-1554797589-7241bb691973?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzODAwMzZ8MHwxfHNlYXJjaHw5fHxqYXBhbnxlbnwwfHx8fDE2Njg1NDc3Nzg&ixlib=rb-4.0.3&q=80&w=1080"
-                },
-                {
-                    "alt_tag": "canal between cherry blossom trees",
-                    "url": "https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzODAwMzZ8MHwxfHNlYXJjaHwxMHx8amFwYW58ZW58MHx8fHwxNjY4NTQ3Nzc4&ixlib=rb-4.0.3&q=80&w=1080"
-                }
-            ]
-        }
-    }
-}
-```
-##
-
-### User End Point
-
-Creates a user
-
-`POST  /api/v1/users`
-
-or
-
-`POST http://localhost:3000/api/v1/users`
-
-
-
-<b>Example Input:</b>
-
-```json
-{
-      "name": "Johnny Utah",
-      "email": "johnnyfootball@pointbreak.com"
-  }
-```
-<b>Example Output:</b>
-```json
-{
-    "data": {
-        "id": "22",
-        "type": "user",
-        "attributes": {
-            "name": "Johnny Utah",
-            "email": "johnnyfootball@pointbreak.com",
-            "api_key": "fe7d99c80e8b5b56c784"
-        }
-    }
-}
-```
-##
-
-### Favorites End points
-
-#### Favorites Create
-
-
-Creates favorites for a user
-
-`POST  /api/v1/favorites`
-
-or
-
-`POST http://localhost:3000/api/v1/favorites`
+`POST http://localhost:3000/api/v1/subscriptions`
 
 
 
@@ -258,30 +145,8 @@ or
 ```
 ##
 
-## Local Setup
-
-* Fork this repository
-* Clone your fork
-* From the command line, install gems and set up your DB:
-    * `bundle`
-    * `rails db:create`
-* Run the test suite with `bundle exec rspec`.
-* Run your development server with `rails s` to see the app in action.
-
-## Versions
-
-- Ruby 2.7.2
-
-- Rails 6.1.7
-
-## Api Keys Needed
-
-- Unsplash - https://unsplash.com/documentation
-- YouTube - https://developers.google.com/youtube/v3/getting-started
-- EDAMAM - https://developer.edamam.com/edamam-recipe-api
 
 ## Contributors
-
 
 
 <img src="https://avatars.githubusercontent.com/u/106836658?s=120&v=4" />
