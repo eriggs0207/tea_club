@@ -16,7 +16,7 @@ class Api::V1::SubscriptionsController < ApplicationController
       SubscriptionSerializer.new(subscription)
       render json: {success: { message: "Subscription has been updated"}}, status: 200
     else
-      render json: {errors: { message: "no subscription found"}}, status: 404
+      render json: { errors: subscription.errors.full_messages }, status: 400
     end
   end
 
