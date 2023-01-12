@@ -19,7 +19,7 @@
 
 ## About Tea Club
 
-Tea club is a REST API for subscriptions for different kinds of teas.  This Back End App uses
+Tea club is a REST API for a subscription service for different kinds of teas.  This Back End App uses
 Service Orientated Architecture to expose different endpoints to a Front End app based on the
 specifications of a JSON Contract and wireframes. 
 
