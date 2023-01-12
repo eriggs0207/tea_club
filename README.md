@@ -64,9 +64,7 @@ This project uses `Ruby 2.7.2`
 
 ## Database Schema
 
-<div align="center">
-  ![image](app/assets/Tea_club_schema.png)
-</div>
+![image](app/assets/Tea_club_schema.png)
 
 ## All Available End Points:
 
