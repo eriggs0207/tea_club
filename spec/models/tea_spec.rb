@@ -10,7 +10,6 @@ RSpec.describe Tea, type: :model do
     it { should validate_presence_of :brew_time }
     it { should validate_numericality_of :temperature }
     it { should validate_numericality_of :brew_time }
-
   end
 
   describe 'relationships' do
