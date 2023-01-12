@@ -61,10 +61,10 @@ This project uses `Ruby 2.7.2`
 * Run the test suite with `bundle exec rspec`.
 * Run your development server with `rails s` to see the app in action.
 
-
 ## Database Schema
 
 ![image](app/assets/Tea_club_schema.png)
+
 
 ## All Available End Points:
 
@@ -73,7 +73,6 @@ This project uses `Ruby 2.7.2`
 #### Subscription Create
 
 
-Creates Subscriptions
 
 `POST  /api/v1/subscriptions`
 
@@ -87,55 +86,100 @@ or
 
 ```json
 {
-    "api_key": "fe7d99c80e8b5b56c784",
-    "country": "Thailand",
-    "recipe_link": "https://www.nam.com",
-    "recipe_title": "Koi Soy"
-}
+          "customer_id": "1",
+          "tea_id": "1",
+          "title": "enthusiast",
+          "price": "250.00",
+          "status": 0 ,
+          "frequency": 1
+        }
 ```
 <b>Example Output:</b>
 ```json
 {
     "success": {
-        "message": "Favorite added successfully"
+        "message": "Subscription has been created"
     }
 }
 ```
-#### Favorites Index
+
+#### Subscription Update
 
 
-`GET /api/v1/favorites`
+`PATCH /api/v1/subscriptions/{subscription_id}`
 
 or
 
-`GET http://localhost:3000/api/v1/favorites{api_key}`
+`PATCH http://localhost:3000/api/v1/subscriptions/13`
+
+<b>Example Input:</b>
+```json
+{
+          "status": 1
+        }
+```
+
+
+<b>Example Output:</b>
+```json
+{
+    "success": {
+        "message": "Subscription has been updated"
+    }
+}
+```
+#### Subscriptions Index
+
+Gets all subscriptions by customer
+
+`GET /api/v1/subscriptions`
+
+or
+
+`GET http://localhost:3000/api/v1/favorites{customer_id}`
 
 <b>Example Input:</b>
 
-`GET http://localhost:3000/api/v1/favorites?api_key=fe7d99c80e8b5b56c784`
+`GET http://localhost:3000/api/v1/favorites?customer_id?=1`
 
 <b>Example Output:</b>
 ```json
 {
     "data": [
         {
-            "id": "34",
-            "type": "favorite",
+            "id": "1",
+            "type": "subscription",
             "attributes": {
-                "recipe_title": "Koi Soy",
-                "recipe_link": "https://www.nam.com",
-                "country": "Thailand",
-                "created_at": "2022-11-16T02:21:00.125Z"
+                "title": "williamsburg",
+                "price": 56.9,
+                "status": "inactive",
+                "frequency": "annually",
+                "customer_id": 1,
+                "tea_id": 1
             }
         },
         {
-            "id": "35",
-            "type": "favorite",
+            "id": "2",
+            "type": "subscription",
             "attributes": {
-                "recipe_title": "Bun Cha",
-                "recipe_link": "https://www.nam.com",
-                "country": "Vietnam",
-                "created_at": "2022-11-16T02:24:25.455Z"
+                "title": "roof",
+                "price": 38.94,
+                "status": "active",
+                "frequency": "monthly",
+                "customer_id": 1,
+                "tea_id": 2
+            }
+        },
+        {
+            "id": "13",
+            "type": "subscription",
+            "attributes": {
+                "title": "enthusiast",
+                "price": 250.0,
+                "status": "inactive",
+                "frequency": "monthly",
+                "customer_id": 1,
+                "tea_id": 1
             }
         }
     ]
