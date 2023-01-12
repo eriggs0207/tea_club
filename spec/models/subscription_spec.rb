@@ -9,8 +9,8 @@ RSpec.describe Subscription, type: :model do
     it { should validate_numericality_of :price }
     it { should validate_presence_of :status }
     it { should validate_presence_of :frequency }
-    it { should define_enum_for(:status).with_values([:active, :inactive]) }
-    it { should define_enum_for(:frequency).with_values([:weekly, :monthly, :annually]) }
+    it { should define_enum_for(:status).with_values(%i[active inactive]) }
+    it { should define_enum_for(:frequency).with_values(%i[weekly monthly annually]) }
   end
 
   describe 'relationships' do
