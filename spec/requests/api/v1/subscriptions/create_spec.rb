@@ -73,7 +73,29 @@ RSpec.describe 'Subscriptions API | Create' do
 
         expect(parsed_response).to be_a(Hash)
         expect(parsed_response[:errors][0]).to eq("Tea must exist")
+      end
 
+      it 'throws a 401 error if price is not a number' do
+
+        customer = create(:customer)
+        tea = create(:tea)
+        subscription_params = {
+          customer_id: customer.id,
+          tea_id: tea.id,
+          title: "tea club",
+          price: "money",
+          status: 0,
+          frequency: 1
+        }
+
+        headers = {"CONTENT_TYPE" => "application/json"}
+
+        post '/api/v1/subscriptions', headers: headers, params: JSON.generate(subscription: subscription_params)
+        parsed_response = JSON.parse(response.body, symbolize_names: true)
+        expect(response).to have_http_status(400)
+
+        expect(parsed_response).to be_a(Hash)
+        expect(parsed_response[:errors][0]).to eq("Price is not a number")
       end
     end
   end

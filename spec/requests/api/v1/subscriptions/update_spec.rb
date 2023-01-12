@@ -25,9 +25,10 @@ RSpec.describe 'Subscriptions API | Update' do
     end
 
     context 'sad path' do
-      it 'throws a 400 if subscription not updated' do
+      it 'throws a 400 error is status is blank' do
+
         sub = create(:subscription)
-        subscription_params = { customer_id: 0 }
+        subscription_params = { status: "" }
         headers = {"CONTENT_TYPE" => "application/json"}
 
         patch "/api/v1/subscriptions/#{sub.id}", headers: headers, params: JSON.generate(subscription: subscription_params)
@@ -36,12 +37,13 @@ RSpec.describe 'Subscriptions API | Update' do
         expect(response).to have_http_status(400)
 
         expect(parsed_response).to be_a(Hash)
-        expect(parsed_response[:errors][0]).to eq( "Customer must exist")
+        expect(parsed_response[:errors][0]).to eq( "Status can't be blank")
       end
 
-      it 'throws a 400 if subscription not updated' do
+      it 'throws a 400 error if frequency is blank' do
+        
         sub = create(:subscription)
-        subscription_params = { customer_id: 0 }
+        subscription_params = { frequency: "" }
         headers = {"CONTENT_TYPE" => "application/json"}
 
         patch "/api/v1/subscriptions/#{sub.id}", headers: headers, params: JSON.generate(subscription: subscription_params)
@@ -50,7 +52,7 @@ RSpec.describe 'Subscriptions API | Update' do
         expect(response).to have_http_status(400)
 
         expect(parsed_response).to be_a(Hash)
-        expect(parsed_response[:errors][0]).to eq( "Customer must exist")
+        expect(parsed_response[:errors][0]).to eq( "Frequency can't be blank")
       end
     end
   end
