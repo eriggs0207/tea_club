@@ -19,11 +19,9 @@
 
 ## About Tea Club
 
-- Expose an API that aggregates data from multiple external APIs
-- Expose an API that requires an authentication token
-- Expose an API for CRUD functionality
-- Determine completion criteria based on the needs of other developers
-- Test both API consumption and exposure, making use of at least one mocking tool (VCR, Webmock, etc).
+Tea club is a REST API for subscriptions for different kinds of teas.  This Back End App uses
+Service Orientated Architecture to expose different endpoints to a Front End app based on the
+specifications of a JSON Contract and wireframes. 
 
 ## Built With
 
