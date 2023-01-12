@@ -10,6 +10,16 @@ class Api::V1::SubscriptionsController < ApplicationController
     end
   end
 
+  def update
+    subscription = Subscription.find(params[:id])
+    if subscription.update(subscription_params)
+      SubscriptionSerializer.new(subscription)
+      render json: {success: { message: "Subscription has been updated"}}, status: 200
+    else
+      render json: { errors: subscription.errors.full_messages }, status: 400
+    end
+  end
+
   private
 
   def subscription_params
@@ -21,9 +31,5 @@ class Api::V1::SubscriptionsController < ApplicationController
       :customer_id,
       :tea_id
     )
-  end
-
-  def subscription_update_params
-    params.permit(:status)
   end
 end
